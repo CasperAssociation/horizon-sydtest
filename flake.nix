@@ -20,6 +20,7 @@
         horizon-platform.legacyPackages.${system}.override {
           overrides = hfinal: hprev: {
             haskell-template = hprev.callCabal2nix "haskell-template" ./. { };
+            sydtest = pkgs.haskell.lib.doCheck hprev.sydtest;
           };
         };
     in
@@ -33,7 +34,7 @@
         ];
       });
 
-      packages.default = legacyPackages.haskell-template;
+      packages.default = legacyPackages.sydtest;
 
     });
 }
